@@ -5,6 +5,7 @@ setTimeout(() => {
   const mentors = Array.from(JSON.parse(makeJson.makeMentorsJson()));
 
   const express = require('express');
+  const path = require('path');
 
   const app = express();
   const port = process.env.PORT || 3000;
@@ -13,7 +14,11 @@ setTimeout(() => {
     response.setHeader('Access-Control-Allow-Origin', '*');
     next();
   });
-  app.get('/', (req, res) => res.send('Hello World!'));
+  app.use(express.static(__dirname));
+
+  app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname, 'index.html'));
+  });
 
   app.get('/mentors', (request, response) => {
     response.send(makeJson.makeMentorsJson());

@@ -9,11 +9,11 @@ const parseTasks = tasks => {
         parsedTasks.push({
             task: task.task,
             link: task.link,
-            status: task.status
+            status: task.status,
         });
         return true;
     });
-    parsedTasks.push({ task: "Presentation", link: "", status: "Checked" });
+    parsedTasks.push({ task: 'Presentation', link: '', status: 'Checked' });
     return parsedTasks;
 };
 
@@ -27,7 +27,7 @@ const makeStudentList = array => {
 
     const studentsList = dataArray.map(data => {
         const student = {};
-        student.gitHub = `${data["student"]}`;
+        student.gitHub = `${data['student']}`;
         return student;
     });
     return studentsList;
@@ -46,12 +46,12 @@ const connectStudentTasks = (studentAccountsArray, tasksArray) => {
     students.map(student => {
         const arr = tasks.filter(
             task =>
-                task["studentGithub"].toLowerCase() ===
-                `https://github.com/${student.gitHub.toLowerCase()}`
+                task['studentGithub'].toLowerCase() ===
+                `https://github.com/${student.gitHub.toLowerCase()}`,
         );
         arr.map(val => {
-            if (!student[val["task"]]) {
-                student[val["task"]] = val["taskScore"];
+            if (!student[val['task']]) {
+                student[val['task']] = val['taskScore'];
             }
             return student;
         });
@@ -74,7 +74,7 @@ const connectMentorStudent = (mentorArr, pairsArr) => {
         const mentName = `${mentor.name} ${mentor.surname}`;
         pairs.map(pair => {
             if (pair.mentor === mentName) {
-                students.push(pair["student"]);
+                students.push(pair['student']);
             }
         });
         mentor.students = students;
@@ -83,9 +83,7 @@ const connectMentorStudent = (mentorArr, pairsArr) => {
     return mentArr;
 };
 
-module.exports = {
-    parseTasks,
-    makeStudentList,
-    connectStudentTasks,
-    connectMentorStudent
-};
+exports.parseTasks = parseTasks;
+exports.makeStudentList = makeStudentList;
+exports.connectStudentTasks = connectStudentTasks;
+exports.connectMentorStudent = connectMentorStudent;
