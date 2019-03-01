@@ -13,6 +13,9 @@ setTimeout(() => {
     response.setHeader('Access-Control-Allow-Origin', '*');
     next();
   });
+  app.get('/', (request, response) => {
+    response.send(makeJson.makeMentorsJson());
+  });
 
   app.get('/mentors', (request, response) => {
     response.send(makeJson.makeMentorsJson());
