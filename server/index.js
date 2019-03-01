@@ -1,4 +1,4 @@
-require('../googleApi/index');
+require('../googleApi/index.js');
 
 setTimeout(() => {
   const makeJson = require('../src/mentorsInfo/index');
