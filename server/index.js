@@ -9,27 +9,38 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000;
 
+let router = express.Router();
+
 app.use(function(request, response, next) {
   response.setHeader('Access-Control-Allow-Origin', '*');
   next();
 });
 app.use(express.static(__dirname));
 
-app.get('/', function(req, res) {
+const apiRoot = router.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.get('/mentors', (request, response) => {
+app.use('/', apiRoot);
+// app.get('/', function(req, res) {
+//   res.sendFile(path.join(__dirname, 'index.html'));
+// });
+
+const apiMentors = router.get('/mentors', (request, response) => {
   response.send(makeJson.makeMentorsJson());
 });
 
-app.get('/students', (request, response) => {
+const apiStudents = router.get('/students', (request, response) => {
   response.send(makeJson.makeStudentsJson());
 });
 
-app.get('/tasks', (request, response) => {
+const apiTasks = router.get('/tasks', (request, response) => {
   response.send(makeJson.makeTasksJson());
 });
+
+app.use('/mentors', apiMentors);
+app.use('/students', apiStudents);
+app.use('/tasks', apiTasks);
 
 app.use('/:github', function(request, response) {
   const mentorGithub = request.params.github;
