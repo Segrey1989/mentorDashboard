@@ -1,7 +1,0 @@
-{
-  "name": "Mentor Dashboard",
-  "description": "Mentor Dashboard",
-  "repository": "https://github.com/Segrey1989/mentorDashboard",
-  "keywords": ["node", "express", "heroku"],
-  "image": "heroku/nodejs"
-}
