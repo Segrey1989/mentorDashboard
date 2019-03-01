@@ -1,10 +1,10 @@
 {
   "name": "mentor_dashboard",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server/index.js",
   "scripts": {
     "dev": "webpack-dev-server",
-    "start": "webpack --watch",
+    "start": "node server/index.js",
     "test": "jest --watchAll",
     "debug-test": "node --inspect-brk node_modules/.bin/jest --runInBand",
     "coverage": "jest --coverage"
